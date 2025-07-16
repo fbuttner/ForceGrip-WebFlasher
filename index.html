@@ -1,8 +1,85 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>ForceGrip Web Flasher</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
+        h1, h2, h3 { color: #333; }
+        code { background-color: #eee; padding: 2px 4px; border-radius: 4px; }
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+        esp-web-install-button { margin: 20px 0; color: red; font-weight: bold;}
+    </style>
+</head>
 <body>
     <h1>ForceGrip Web Flasher</h1>
+    <p>This tool allows you to install or update the firmware on your ForceGrip device directly from your web browser.</p>
+
     <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
     <esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
+
+    <h2>Instructions</h2>
+
+    <h3>Requirements</h3>
+    <ul>
+        <li><strong>A ForceGrip Device</strong>: The hardware you want to program.</li>
+        <li><strong>A USB-C Data Cable</strong>: For connecting the device to your computer. Note that some cables are for charging only and won't work.</li>
+        <li>
+            <strong>A Compatible Web Browser</strong>:
+            <ul>
+                <li>Google Chrome</li>
+                <li>Microsoft Edge</li>
+                <li><em>Other Chromium-based browsers may work but are not officially supported.</em></li>
+            </ul>
+        </li>
+        <li><strong>Drivers</strong>: For most modern operating systems (Windows 10/11, macOS, Linux), drivers for the ESP32-C3 are installed automatically. If your device is not detected, you may need to install drivers for its USB-to-serial chip.</li>
+    </ul>
+
+    <h3>Flashing Steps</h3>
+    <ol>
+        <li>
+            <strong>Connect to the Device</strong>
+            <ul>
+                <li>Connect the ForceGrip to your computer via USB. To flash it, you may need to press and <strong>hold</strong> the button on the ForceGrip while connecting it to your computer.</li>
+                <li>Click the <strong>CONNECT</strong> button above.</li>
+                <li>A pop-up window will appear. Select the serial port for your ForceGrip (e.g., <code>COM3</code> on Windows, <code>/dev/ttyUSB0</code> on Linux, or <code>/dev/cu.usbserial-XXXX</code> on macOS) and click "Connect".</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Install the Firmware</strong>
+            <ul>
+                <li>Once connected, the button will change to <strong>INSTALL ForceGrip</strong>. Click it.</li>
+                <li>A confirmation dialog will appear. Choose <strong>"INSTALL"</strong> to proceed. This will erase the device before installing the new firmware.</li>
+                <li>Wait for the installation to complete. This may take a minute or two.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Finish</strong>
+            <ul>
+                <li>Once you see the "Installation complete!" message, the process is done.</li>
+                <li>You can now unplug your ForceGrip.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+        <li>
+            <strong>Device Not Detected</strong>
+            <ul>
+                <li>Ensure you are using a USB-C <strong>data</strong> cable, not a charge-only cable.</li>
+                <li>Try a different USB port on your computer.</li>
+                <li>Make sure the device is in bootloader mode: disconnect it, press and <strong>hold</strong> the button, then reconnect the USB cable while still holding the button.</li>
+                <li>If it's still not detected, you might need to manually install the USB-to-serial drivers mentioned in the "Requirements" section.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Flashing Fails</strong>
+            <ul>
+                <li>If the process fails, disconnect the device and repeat the connection steps, ensuring it's in bootloader mode before you click "CONNECT".</li>
+                <li>Close any other programs that might be using the serial port (e.g., Arduino IDE, a serial monitor, etc.).</li>
+            </ul>
+        </li>
+    </ul>
 </body>
 </html>
